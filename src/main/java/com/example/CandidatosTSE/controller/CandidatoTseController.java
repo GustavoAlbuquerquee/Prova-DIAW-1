@@ -24,15 +24,13 @@ public class CandidatoTseController {
     public String index(
             @RequestParam(required = false) String genero,
             @RequestParam(required = false) String escolaridade,
-            @RequestParam(required = false) String idadeMax
-            @RequestParam(required = false) String idadeMax
-
-        Model model) {
+            @RequestParam(required = false) Integer idadeMin,
+            @RequestParam(required = false) Integer idadeMax,
+            Model model) {
 
         List<Candidato> candidatos = candidatosTseService.filtrarPerfil(genero, escolaridade, idadeMin, idadeMax);
 
         model.addAttribute("candidatos", candidatos);
-        model.addAtribute()
         model.addAttribute("totalEncontrado", candidatos.size());
         model.addAttribute("generos", candidatosTseService.listarGeneros());
         model.addAttribute("escolaridades", candidatosTseService.listarEscolaridades());

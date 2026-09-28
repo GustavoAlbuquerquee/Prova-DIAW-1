@@ -1,0 +1,231 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #f2efec;
+  color: #333333;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  font-size: 15px;
+}
+
+.cabecalho {
+  background-color: #55277f;
+  color: #ffffff;
+  padding: 16px 28px;
+}
+
+.cabecalho h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.cabecalho p {
+  margin: 6px 0 0 0;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.painel-filtros {
+  align-self: start;
+  background-color: #ffffff;
+  border: 1px solid #e2ddd8;
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.grupo-filtro {
+  margin: 0 0 18px 0;
+  padding: 0;
+  border: none;
+}
+
+.grupo-filtro legend,
+.grupo-filtro .rotulo {
+  display: block;
+  margin-bottom: 8px;
+  padding: 0;
+  color: #55277f;
+  font-weight: bold;
+}
+
+.opcao {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+  cursor: pointer;
+}
+
+select,
+input[type="number"] {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid #cfc8c2;
+  border-radius: 6px;
+  background-color: #ffffff;
+  font-size: 14px;
+}
+
+.faixa-etaria {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.faixa-etaria .ate {
+  color: #777777;
+  font-size: 13px;
+}
+
+.acoes {
+  display: flex;
+  gap: 10px;
+}
+
+.acoes button,
+.acoes .limpar {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.acoes button {
+  border: 1px solid #55277f;
+  background-color: #55277f;
+  color: #ffffff;
+}
+
+.acoes button:hover {
+  background-color: #442066;
+}
+
+.acoes .limpar {
+  border: 1px solid #55277f;
+  background-color: #ffffff;
+  color: #55277f;
+  text-decoration: none;
+}
+
+.acoes .limpar:hover {
+  background-color: #f3edf9;
+}
+
+.contagem {
+  margin: 4px 0 14px 0;
+  color: #555555;
+}
+
+.contagem strong {
+  color: #222222;
+}
+
+.vazio {
+  padding: 20px;
+  border: 1px dashed #cfc8c2;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #777777;
+}
+
+.lista-candidatos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+}
+
+.card-candidato {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #e2ddd8;
+  border-left: 4px solid #55277f;
+  border-radius: 10px;
+}
+
+.foto-candidato {
+  width: 90px;
+  aspect-ratio: 161 / 225;
+  object-fit: cover;
+  border-radius: 6px;
+  background-color: #eeeae6;
+  flex-shrink: 0;
+}
+
+.dados {
+  min-width: 0;
+}
+
+.nome {
+  margin: 2px 0 6px 0;
+  font-size: 16px;
+  color: #222222;
+}
+
+.nome .numero {
+  margin-left: 6px;
+  color: #55277f;
+}
+
+.cargo {
+  margin: 0 0 8px 0;
+  color: #555555;
+  font-size: 14px;
+}
+
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 8px 0;
+}
+
+.etiqueta {
+  padding: 3px 9px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.etiqueta-f {
+  background-color: #f7e1f0;
+  color: #a0226f;
+}
+
+.etiqueta-m {
+  background-color: #e1ecf7;
+  color: #1f5c99;
+}
+
+.etiqueta-idade {
+  background-color: #fbeedd;
+  color: #8a5a14;
+}
+
+.escolaridade,
+.ocupacao {
+  margin: 0 0 4px 0;
+  color: #666666;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
