@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil dos Candidatos - Eleições 2026 - MG</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <header class="cabecalho">
+      <h1>Perfil dos Candidatos - Eleições 2026 - MG</h1>
+      <p>Filtre por gênero, escolaridade e faixa etária</p>
+    </header>
+
+    <main class="layout">
+      <aside class="painel-filtros">
+        <form method="get" th:action="@{/}">
+          <fieldset class="grupo-filtro">
+            <legend>Gênero</legend>
+
+            <label class="opcao">
+              <input
+                type="radio"
+                name="genero"
+                value=""
+                th:checked="${generoSelecionado == ''}"
+              />
+              <span>Todos</span>
+            </label>
+
+            <label class="opcao" th:each="g : ${generos}">
+              <input
+                type="radio"
+                name="genero"
+                th:value="${g}"
+                th:checked="${g == generoSelecionado}"
+              />
+              <span th:text="${g}">GÊNERO</span>
+            </label>
+          </fieldset>
+
+          <div class="grupo-filtro">
+            <label class="rotulo" for="escolaridade">Escolaridade</label>
+            <select id="escolaridade" name="escolaridade">
+              <option value="" th:selected="${escolaridadeSelecionada == ''}">
+                Todas
+              </option>
+              <option
+                th:each="e : ${escolaridades}"
+                th:value="${e}"
+                th:text="${e}"
+                th:selected="${e == escolaridadeSelecionada}"
+              >
+                ESCOLARIDADE
+              </option>
+            </select>
+          </div>
+
+          <div class="grupo-filtro">
+            <span class="rotulo">Faixa etária</span>
+            <div class="faixa-etaria">
+              <input
+                type="number"
+                name="idadeMin"
+                min="0"
+                max="120"
+                placeholder="De"
+                th:value="${idadeMin}"
+              />
+              <span class="ate">até</span>
+              <input
+                type="number"
+                name="idadeMax"
+                min="0"
+                max="120"
+                placeholder="Até"
+                th:value="${idadeMax}"
+              />
+            </div>
+          </div>
+
+          <div class="acoes">
+            <button type="submit">Filtrar</button>
+            <a th:href="@{/}" class="limpar">Limpar</a>
+          </div>
+        </form>
+      </aside>
+
+      <section class="resultados">
+        <p class="contagem">
+          <strong th:text="${totalEncontrado}">0</strong> candidato(s)
+          encontrado(s).
+        </p>
+
+        <p class="vazio" th:if="${totalEncontrado == 0}">
+          Nenhum candidato encontrado com os filtros selecionados.
+        </p>
+
+        <div class="lista-candidatos">
+          <article class="card-candidato" th:each="cand : ${candidatos}">
+            <img
+              th:src="@{'/images/candidatos/' + ${cand.nomeArquivoFoto}}"
+              th:alt="${cand.nomeUrna}"
+              class="foto-candidato"
+            />
+
+            <div class="dados">
+              <h2 class="nome">
+                <span th:text="${cand.nomeUrna}">NOME DE URNA</span>
+                <span class="numero" th:text="${cand.nrCandidato}">00000</span>
+              </h2>
+
+              <p
+                class="cargo"
+                th:text="${cand.cargo + ' · ' + cand.siglaPartido}"
+              >
+                Cargo · Partido
+              </p>
+
+              <p class="etiquetas">
+                <span
+                  class="etiqueta"
+                  th:if="${!#strings.isEmpty(cand.genero)}"
+                  th:classappend="${cand.genero == 'FEMININO'} ? 'etiqueta-f' : 'etiqueta-m'"
+                  th:text="${cand.genero}"
+                  >GÊNERO</span
+                >
+
+                <span
+                  class="etiqueta etiqueta-idade"
+                  th:if="${cand.idade >= 0}"
+                  th:text="${cand.idade} + ' anos'"
+                  >00 anos</span
+                >
+              </p>
+
+              <p
+                class="escolaridade"
+                th:if="${!#strings.isEmpty(cand.grauInstrucao)}"
+                th:text="${cand.grauInstrucao}"
+              >
+                ESCOLARIDADE
+              </p>
+
+              <p
+                class="ocupacao"
+                th:if="${!#strings.isEmpty(cand.ocupacao)}"
+                th:text="${cand.ocupacao}"
+              >
+                OCUPAÇÃO
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
